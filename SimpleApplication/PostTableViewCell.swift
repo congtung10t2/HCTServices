@@ -11,13 +11,15 @@ import UIKit
 import HCTServices
 
 class PostTableViewCell : UITableViewCell {
+  @IBOutlet weak var loading: UIActivityIndicatorView!
   @IBOutlet weak var photo: UIImageView!
   func configure(post: Post) {
-    guard let urlStr = post.urls?.thumb, let url = URL(string: urlStr) else {
+    guard let urlStr = post.urls?.regular, let url = URL(string: urlStr) else {
       return
     }
     
     let option = UrlOptions(url: url)
+    loading.isHidden = false
     FileLoader.shared.downloadImage(with: option) { [weak self] (value, error) in
       guard let self = self else {
         return
@@ -27,8 +29,9 @@ class PostTableViewCell : UITableViewCell {
       }
       DispatchQueue.main.async {
         self.photo.image = value
+        self.loading.isHidden = true
+        self.layoutIfNeeded()
       }
     }
-    
   }
 }

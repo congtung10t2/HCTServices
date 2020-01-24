@@ -32,15 +32,21 @@
                                                         <constraint firstAttribute="width" secondItem="Z56-Rm-u1P" secondAttribute="height" multiplier="1:1" id="pwJ-BC-3DS"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="FJW-vw-2YD">
+                                                    <rect key="frame" x="100" y="100" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="FJW-vw-2YD" firstAttribute="centerX" secondItem="Z56-Rm-u1P" secondAttribute="centerX" id="0kh-SA-Gh6"/>
                                                 <constraint firstItem="Z56-Rm-u1P" firstAttribute="top" secondItem="QH8-dS-tXl" secondAttribute="top" id="Fs6-ww-r5s"/>
+                                                <constraint firstItem="FJW-vw-2YD" firstAttribute="centerY" secondItem="Z56-Rm-u1P" secondAttribute="centerY" id="cNZ-Dp-TdP"/>
                                                 <constraint firstItem="Z56-Rm-u1P" firstAttribute="leading" secondItem="QH8-dS-tXl" secondAttribute="leading" id="ehe-Oh-9VS"/>
                                                 <constraint firstItem="Z56-Rm-u1P" firstAttribute="height" secondItem="QH8-dS-tXl" secondAttribute="height" id="q0V-lf-s5C"/>
                                                 <constraint firstAttribute="bottom" secondItem="Z56-Rm-u1P" secondAttribute="bottom" id="sbB-Du-lLh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="loading" destination="FJW-vw-2YD" id="miu-6T-TCZ"/>
                                             <outlet property="photo" destination="Z56-Rm-u1P" id="QY3-Ty-dLU"/>
                                         </connections>
                                     </tableViewCell>
