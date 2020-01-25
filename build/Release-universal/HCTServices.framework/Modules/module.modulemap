@@ -1,0 +1,11 @@
+framework module HCTServices {
+  umbrella header "HCTServices.h"
+
+  export *
+  module * { export * }
+}
+
+module HCTServices.Swift {
+    header "HCTServices-Swift.h"
+    requires objc
+}
