@@ -21,16 +21,18 @@ class PostTableViewCell : UITableViewCell {
     let option = UrlOptions(url: url)
     loading.isHidden = false
     FileLoader.shared.downloadImage(with: option) { [weak self] (value, error) in
+      
       guard let self = self else {
         return
       }
+      DispatchQueue.main.async {
+        self.loading.isHidden = true
+      
       guard let value = value else {
+        self.photo.image = UIImage(named: "img_non")
         return
       }
-      DispatchQueue.main.async {
         self.photo.image = value
-        self.loading.isHidden = true
-        self.layoutIfNeeded()
       }
     }
   }

@@ -10,6 +10,7 @@ import UIKit
 import HCTServices
 
 class ViewController: UIViewController {
+  var refreshControl: UIRefreshControl?
   var posts : [Post] = []
   @IBOutlet weak var postsTable: UITableView!
   override func viewDidLoad() {
@@ -18,8 +19,16 @@ class ViewController: UIViewController {
     postsTable.dataSource = self;
     postsTable.delegate = self;
     self.loadData()
+    self.refreshData()
   }
-  func loadData() {
+  func refreshData(){
+    let refreshControl = UIRefreshControl()
+    refreshControl.addTarget(self, action:  #selector(loadData), for: .valueChanged)
+    self.refreshControl = refreshControl
+    self.postsTable.addSubview(refreshControl)
+  }
+  
+  @objc func loadData() {
     guard let url = URL(string: AppConfig.endPointUrl) else {
       return
     }
@@ -34,6 +43,7 @@ class ViewController: UIViewController {
       self.posts = value
       DispatchQueue.main.async {
         self.postsTable.reloadData()
+        self.refreshControl?.endRefreshing()
       }
     }
   }
